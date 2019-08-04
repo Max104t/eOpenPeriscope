@@ -1,5 +1,5 @@
 # eOpenPeriscope
-based on [gitnew2018/My-OpenPeriscope](https://github.com/gitnew2018/My-OpenPeriscope) and [Pmmlabs/OpenPeriscope](https://github.com/Pmmlabs/OpenPeriscope) [NW.js](https://nwjs.io/) based OpenPeriscope. This project is going to be a major refactor to:
+based on [gitnew2018/My-OpenPeriscope](https://github.com/gitnew2018/My-OpenPeriscope) and [Pmmlabs/OpenPeriscope](https://github.com/Pmmlabs/OpenPeriscope) [NW.js](https://nwjs.io/). This project is going to be a major refactor to:
  - port the code to [cordova-electron](https://cordova.apache.org/docs/en/latest/guide/platforms/electron/index.html#requirements-and-support) to enable running it on mobile phones
  - refactor the code to fix the code style and improve maintainability
  
