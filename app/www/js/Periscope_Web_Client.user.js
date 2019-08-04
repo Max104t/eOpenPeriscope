@@ -2890,7 +2890,7 @@ function SignIn1() {
 function SignOut() {
     localStorage.clear();
     setSet();
-    location.pathname = 'index.html';
+    location.pathname = 'openperiscope_index.html';
 }
 function OAuthTwitter(endpoint, callback, extra){
     OAuth('https://api.twitter.com/oauth/' + endpoint, 'POST', callback,extra);

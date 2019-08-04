@@ -16,10 +16,24 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+var emoji;
+var settings;
+
 var app = {
+    settings:{},
+
     // Application Constructor
     initialize: function() {
+        // load globals
+        emoji = new EmojiConvertor();
+
+        // initialize members
+        settings = JSON.parse(localStorage.getItem('settings')) || {};
+
+        // listen to device ready
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+        window.addEventListener('beforeunload', this.onWindowClose.bind(this), false);
     },
 
     // deviceready Event Handler
@@ -27,19 +41,12 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
-        this.receivedEvent('deviceready');
+        console.log('Received Event: deviceready');
+        localStorage.setItem('settings', JSON.stringify(this.settings));
+        PeriscopeWebClient.CreateMainWindow();
     },
-
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
+    onWindowClose: function() {
+        localStorage.setItem('settings', JSON.stringify(this.settings));
     }
 };
 

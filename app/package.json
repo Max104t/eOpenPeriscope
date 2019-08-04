@@ -3,10 +3,11 @@
   "displayName": "eOpenPeriscope",
   "version": "1.0.0",
   "description": "cordova-electron OpenPeriscope",
-  "main": "index.js",
+  "main": "Periscope_Web_Client.user",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "chromium-args": "--data-path=userdata",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Max104t/eOpenPeriscope.git"
