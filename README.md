@@ -20,3 +20,19 @@ $ npm install
 # Run the app
 $ cordova run electron --nobuild
 ```
+
+# Credits
+- [Pmmlabs/OpenPeriscope](https://github.com/Pmmlabs/OpenPeriscope)
+- [gitnew2018/My-OpenPeriscope](https://github.com/gitnew2018/My-OpenPeriscope)
+- jQuery https://jquery.com
+- CryptoJS http://crypto-js.googlecode.com
+- Leaflet http://leafletjs.com
+- [Leaflet/Leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster)
+- [iamcal/js-emoji](https://github.com/iamcal/js-emoji)
+- clipboard.js https://clipboardjs.com
+- [le717/jquery-spoiler](https://github.com/le717/jquery-spoiler)
+- [nathancahill/Split.js](https://github.com/nathancahill/Split.js)
+- [gitnew2018/nodejs_peri_downloader](https://github.com/gitnew2018/nodejs_peri_downloader)
+
+#License
+- [GNU General Public License v2.0](./LICENSE)

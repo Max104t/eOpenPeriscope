@@ -24,8 +24,10 @@
   },
   "homepage": "https://github.com/Max104t/eOpenPeriscope#readme",
   "dependencies": {
+    "are-we-there-yet": "^1.1.5",
     "cordova-android": "^8.0.0",
-    "cordova-electron": "^1.1.0"
+    "cordova-electron": "^1.1.0",
+    "jquery": "^3.4.1"
   },
   "devDependencies": {
     "cordova-plugin-whitelist": "^1.3.4"

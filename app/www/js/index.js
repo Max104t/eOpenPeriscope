@@ -18,7 +18,6 @@
  */
 
 var emoji;
-var settings;
 
 var app = {
     settings:{},
@@ -29,7 +28,7 @@ var app = {
         emoji = new EmojiConvertor();
 
         // initialize members
-        settings = JSON.parse(localStorage.getItem('settings')) || {};
+        this.settings = load_settings();
 
         // listen to device ready
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
@@ -42,11 +41,10 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         console.log('Received Event: deviceready');
-        localStorage.setItem('settings', JSON.stringify(this.settings));
         PeriscopeWebClient.CreateMainWindow();
     },
     onWindowClose: function() {
-        localStorage.setItem('settings', JSON.stringify(this.settings));
+        save_settings(this.settings);
     }
 };
 
