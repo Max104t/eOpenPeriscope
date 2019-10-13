@@ -20,15 +20,10 @@
 var emoji;
 
 var app = {
-    settings:{},
-
     // Application Constructor
     initialize: function() {
         // load globals
         emoji = new EmojiConvertor();
-
-        // initialize members
-        this.settings = load_settings();
 
         // listen to device ready
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
@@ -44,7 +39,6 @@ var app = {
         PeriscopeWebClient.CreateMainWindow();
     },
     onWindowClose: function() {
-        save_settings(this.settings);
     }
 };
 

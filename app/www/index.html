@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script type="text/javascript" src="cordova.js"></script>
+
     <!-- 3rd party -->
     <script type="text/javascript" src="js/3rdParty/clipboard.min.js"></script>
     <script type="text/javascript" src="js/3rdParty/crypto-js.js"></script>
@@ -12,12 +14,14 @@
     <script type="text/javascript" src="js/3rdParty/split.min.js"></script>
 
     <!-- Model -->
+    <script type="text/javascript" src="js/Model/settings.js"></script>
 
     <!-- View -->
 
-    <!-- ViewModel -->
+    <!-- Controllers -->
+    <script type="text/javascript" src="js/ViewModel/Api.js"></script>
+    <script type="text/javascript" src="js/ViewModel/signing.js"></script>
     <script type="text/javascript" src="js/ViewModel/PeriscopeWebClient.js"></script>
-    <script type="text/javascript" src="js/ViewModel/settings.js"></script>
 
     <!--
     Customize this policy to fit your own app's needs. For more guidance, see:
@@ -37,7 +41,6 @@
 </head>
 <body>
     <div id="deviceready" class="display:none"></div>
-    <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
