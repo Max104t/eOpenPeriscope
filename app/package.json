@@ -1,5 +1,5 @@
 {
-  "name": "eOpenPeriscope",
+  "name": "eopenperiscope",
   "displayName": "eOpenPeriscope",
   "version": "1.0.0",
   "description": "cordova-electron OpenPeriscope",
@@ -26,6 +26,7 @@
   "dependencies": {
     "are-we-there-yet": "^1.1.5",
     "cordova-android": "^8.0.0",
+    "cordova-browser": "^6.0.0",
     "cordova-electron": "^1.1.0",
     "cordova-plugin-device": "^2.0.3",
     "jquery": "^3.4.1"
@@ -40,7 +41,8 @@
     },
     "platforms": [
       "electron",
-      "android"
+      "android",
+      "browser"
     ]
   }
 }
