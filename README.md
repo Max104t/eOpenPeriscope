@@ -19,7 +19,7 @@ $ cd eOpenPeriscope/app
 $ npm install
 # Run the app
 $ cordova run electron --nobuild
-$ cordova run browser --target=chrome -- --allow-file-access-from-files --disable-web-security
+$ cordova run browser --target=chrome -- --allow-file-access-from-files --disable-web-security --allow-file-access --allow-cross-origin-auth-prompt --disable-site-isolation-trials
 ```
 
 # Credits
