@@ -1,12 +1,14 @@
 if (!GM_BROWSER) {
     GM_xmlhttpRequest = function (options) {
-        var oReq = new XMLHttpRequest();
-        oReq.addEventListener("load", options.onload);
-        oReq.addEventListener("error", function (e) {
-            console.error(e);
-        });
-        oReq.open(options.method, options.url);
-        oReq.send();
+        cordova.plugin.http.setHeader('*', 'Origin', '');
+        options.data = JSON.parse(options.data);
+        cordova.plugin.http.sendRequest(
+            options.url,
+            options,
+            options.onload,
+            function (e) {
+                console.error(e);
+            });
     };
 }
 
