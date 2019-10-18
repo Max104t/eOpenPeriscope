@@ -1,14 +1,33 @@
 if (!GM_BROWSER) {
     GM_xmlhttpRequest = function (options) {
-        cordova.plugin.http.setHeader('*', 'Origin', '');
-        options.data = JSON.parse(options.data);
-        cordova.plugin.http.sendRequest(
-            options.url,
-            options,
-            options.onload,
-            function (e) {
-                console.error(e);
-            });
+        // headers: {
+        //     Authorization: authorization_token,
+        //     /* drkchange show all channels*/ 'X-Periscope-User-Agent': 'Periscope/2699 (iPhone; iOS 8.1.2; Scale/2.00)',
+        //     locale: langDt.find('.lang').val()
+        // }
+
+        var oReq = new XMLHttpRequest();
+        oReq.addEventListener("load", options.onload);
+        oReq.addEventListener("error", function (e) {
+            console.error(e);
+        });
+        oReq.open(options.method, "https://cors-anywhere.herokuapp.com/" + options.url, /*async=*/true);
+        oReq.setRequestHeader("Origin", "");
+        oReq.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        oReq.setRequestHeader('X-PINGOTHER', 'pingpong');
+        oReq.setRequestHeader('Content-Type', 'application/javascript');
+
+        for (header in options.headers) {
+            oReq.setRequestHeader(header, options.headers[header]);
+        }
+
+        var data_param = JSON.parse(options.data);
+        var data = new FormData();
+        for (data_item in data_param) {
+            data.append(data_item, data_param[data_item]);
+        }
+
+        oReq.send(data);
     };
 }
 
