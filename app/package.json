@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "chromium-args": "--data-path=userdata",
+  "chromium-args": "--allow-file-access-from-files --disable-web-security --data-path=userdata",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Max104t/eOpenPeriscope.git"
