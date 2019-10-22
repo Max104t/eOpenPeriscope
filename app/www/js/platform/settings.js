@@ -5,7 +5,23 @@ function save_settings(settings) {
     localStorage.setItem('settings', JSON.stringify(settings));
 }
 
-var settings = load_settings();
+var DefaultFolderFileNames = {
+    partialShort: 'P',
+    replayShort: 'R_',
+    privateShort: 'PV_',
+    producerShort: 'PRO_',
+    folderName: '#{user_id} (#{username})',
+    fileName: '#{private}#{partial}#{replay}#{year}-#{month}-#{day}_#{hour}.#{minute}_#{user_display_name}_#{status}'
+};
+
+var settings = load_settings() || {
+    classic_cards_order: false,
+    followingInterval: 15,
+    refreshFollowingOnLoad: true,
+    refreshTopOnLoad: true,
+    replayTimeLimit: 3600,
+    selectedUsersList: true
+};
 
 function load_settings() {
     return JSON.parse(localStorage.getItem('settings')) || {};
@@ -13,7 +29,6 @@ function load_settings() {
 
 // my-periscope
 function setSet(key, value) {
-    var settings = load_settings();
     settings[key] = value;
     localStorage.setItem('settings', JSON.stringify(settings));
 }

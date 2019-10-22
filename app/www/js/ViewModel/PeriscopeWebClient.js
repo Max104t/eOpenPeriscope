@@ -21,7 +21,9 @@ var Inits= {
     People: function () {
         PeopleController.init($('#right'));
     },
-    Edit: function () {},
+    Edit: function () {
+        EditController.init($('#right'));
+    },
     Dmanager: function () {},
     Console: function () {}
 };
