@@ -1,5 +1,7 @@
 var Inits= {
-    Map: function () { },
+    Map: function () { 
+        MapController.init($('#right'));
+    },
     ApiTest: function () {
         ApiTestController.init($('#right'));
     },
@@ -53,8 +55,6 @@ var PeriscopeWebClient = {
 
             if (loginTwitter) {
                 loginTwitter = JSON.parse(loginTwitter);
-            }
-            if (loginTwitter.user) {
                 PeriscopeWebClient.Ready(loginTwitter);
                 PeriscopeWebClient.RefreshProfile(loginTwitter);
             } else if (session_key && session_secret) {

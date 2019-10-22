@@ -10,7 +10,7 @@
         * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
             * Enable inline JS: add 'unsafe-inline' to default-src
     -->
-    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src * data:">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline'; style-src * 'unsafe-inline'; media-src *; img-src * data:">
 
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
@@ -37,21 +37,22 @@
     <script type="text/javascript" src="js/Model/PeriscopeApiWrapper.js"></script>
 
     <!-- ViewModel -->
-    <script type="text/javascript" src="js/ViewModel/DownloadHelpers.js"></script>
+    <script type="text/javascript" src="js/ViewModel/ApiTest.js"></script>
     <script type="text/javascript" src="js/ViewModel/BroadcastHelpers.js"></script>
+    <script type="text/javascript" src="js/ViewModel/DownloadHelpers.js"></script>
+    <script type="text/javascript" src="js/ViewModel/Edit.js"></script>
+    <script type="text/javascript" src="js/ViewModel/Following.js"></script>
+    <script type="text/javascript" src="js/ViewModel/Groups.js"></script>
+    <script type="text/javascript" src="js/ViewModel/Map.js"></script>
+    <script type="text/javascript" src="js/ViewModel/Notifications.js"></script>
+    <script type="text/javascript" src="js/ViewModel/People.js"></script>
+    <script type="text/javascript" src="js/ViewModel/PeriscopeWebClient.js"></script>
+    <script type="text/javascript" src="js/ViewModel/Progress.js"></script>
+    <script type="text/javascript" src="js/ViewModel/signing.js"></script>
+    <script type="text/javascript" src="js/ViewModel/Top.js"></script>
+    <script type="text/javascript" src="js/ViewModel/User.js"></script>
     <script type="text/javascript" src="js/ViewModel/UserListHelpers.js"></script>
     <script type="text/javascript" src="js/ViewModel/WebClientHelpers.js"></script>
-    <script type="text/javascript" src="js/ViewModel/signing.js"></script>
-    <script type="text/javascript" src="js/ViewModel/Edit.js"></script>
-    <script type="text/javascript" src="js/ViewModel/User.js"></script>
-    <script type="text/javascript" src="js/ViewModel/People.js"></script>
-    <script type="text/javascript" src="js/ViewModel/Top.js"></script>
-    <script type="text/javascript" src="js/ViewModel/ApiTest.js"></script>
-    <script type="text/javascript" src="js/ViewModel/Groups.js"></script>
-    <script type="text/javascript" src="js/ViewModel/Following.js"></script>
-    <script type="text/javascript" src="js/ViewModel/Notifications.js"></script>
-    <script type="text/javascript" src="js/ViewModel/Progress.js"></script>
-    <script type="text/javascript" src="js/ViewModel/PeriscopeWebClient.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <title>Hello World</title>
