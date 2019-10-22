@@ -22,6 +22,16 @@ $ cordova run electron --nobuild
 $ cordova run browser --target=chrome -- --allow-file-access-from-files --disable-web-security --allow-file-access --allow-cross-origin-auth-prompt --disable-site-isolation-trials
 ```
 
+You will also need `CORS` proxy for `browser` platform. get is from [here](https://github.com/Max104t/bypasscors).
+
+```
+git clone git@github.com:Max104t/bypasscors.git
+cd bypasscors
+npm install
+npm run start
+```
+
+
 # Credits
 - [Pmmlabs/OpenPeriscope](https://github.com/Pmmlabs/OpenPeriscope)
 - [gitnew2018/My-OpenPeriscope](https://github.com/gitnew2018/My-OpenPeriscope)
