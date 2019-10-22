@@ -6,6 +6,33 @@ var MESSAGE_KIND = {
     AUTH: 3,
     PRESENCE: 4
 };
+var languageSelect = '<dt>Language: <select class="lang">\
+            <option>ar</option>\
+            <option>da</option>\
+            <option>de</option>\
+            <option>en</option>\
+            <option>es</option>\
+            <option>fi</option>\
+            <option>fr</option>\
+            <option>he</option>\
+            <option>hy</option>\
+            <option>id</option>\
+            <option>it</option>\
+            <option>ja</option>\
+            <option>kk</option>\
+            <option>ko</option>\
+            <option>nb</option>\
+            <option>pl</option>\
+            <option>other</option>\
+            <option>pt</option>\
+            <option>ro</option>\
+            <option>ru</option>\
+            <option>sv</option>\
+            <option>tr</option>\
+            <option>uk</option>\
+            <option>zh</option>\
+            <option>all</option>\
+        </select></dt>';
 /* LEVEL 1 */
 function zeros(number) {
     return (100 + number + '').substr(1);

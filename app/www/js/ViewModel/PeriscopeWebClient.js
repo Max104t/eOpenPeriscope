@@ -6,15 +6,21 @@ var Inits= {
     Groups: function (){
         GroupsController.init($('#right'), function() {});
     },
-    Top: function () {},
+    Top: function () {
+        TopController.init($('#right'));
+    },
     Search: function () {},
     Following: function () {
         FollowingController.init($('#right'));
     },
     Create: function () {},
     Chat: function () {},
-    User: function () {},
-    People: function () {},
+    User: function () {
+        UserController.init($('#right'));
+    },
+    People: function () {
+        PeopleController.init($('#right'));
+    },
     Edit: function () {},
     Dmanager: function () {},
     Console: function () {}
