@@ -10,7 +10,7 @@
         * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
             * Enable inline JS: add 'unsafe-inline' to default-src
     -->
-    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data:">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src * data:">
 
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
@@ -28,14 +28,18 @@
     <script type="text/javascript" src="js/3rdParty/leaflet.markercluster-src.js"></script>
     <script type="text/javascript" src="js/3rdParty/split.min.js"></script>
 
+    <!-- platform -->
+    <script type="text/javascript" src="js/platform/settings.js"></script>
+    <script type="text/javascript" src="js/platform/GM_xmlhttpRequest.js"></script>
+
     <!-- Model -->
-    <script type="text/javascript" src="js/Model/settings.js"></script>
+    <script type="text/javascript" src="js/Model/PeriscopeApiWrapper.js"></script>
 
     <!-- View -->
 
     <!-- Controllers -->
-    <script type="text/javascript" src="js/ViewModel/Api.js"></script>
     <script type="text/javascript" src="js/ViewModel/signing.js"></script>
+    <script type="text/javascript" src="js/ViewModel/ApiTest.js"></script>
     <script type="text/javascript" src="js/ViewModel/PeriscopeWebClient.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/index.css">

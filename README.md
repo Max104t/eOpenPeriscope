@@ -34,6 +34,7 @@ $ cordova run browser --target=chrome -- --allow-file-access-from-files --disabl
 - [le717/jquery-spoiler](https://github.com/le717/jquery-spoiler)
 - [nathancahill/Split.js](https://github.com/nathancahill/Split.js)
 - [gitnew2018/nodejs_peri_downloader](https://github.com/gitnew2018/nodejs_peri_downloader)
+- [charlyBerthet/bypasscors](https://github.com/charlyBerthet/bypasscors)
 
 #License
 - [GNU General Public License v2.0](./LICENSE)

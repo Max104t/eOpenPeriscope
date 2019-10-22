@@ -28,6 +28,7 @@
     "cordova-android": "^8.0.0",
     "cordova-browser": "^6.0.0",
     "cordova-electron": "^1.1.0",
+    "cordova-js": "5.0.0",
     "cordova-plugin-advanced-http": "^2.2.0",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-file": "^6.0.2",

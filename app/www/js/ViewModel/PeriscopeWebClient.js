@@ -16,6 +16,32 @@ var Progress = {
     }
 };
 
+var Inits= {
+    Map: function () { },
+    ApiTest: function () {
+        ApiTestController.init($('#right'));
+    },
+    Top: function () {},
+    Search: function () {},
+    Following: function () {},
+    Create: function () {},
+    Chat: function () {},
+    User: function () {},
+    People: function () {},
+    Edit: function () {},
+    Dmanager: function () {},
+    Console: function () {}
+};
+
+var IMG_PATH = '';
+    
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
 var PeriscopeWebClient = {
     CreateMainWindow: function () {
         if (location.href == 'https://api.twitter.com/oauth/authorize') {
@@ -40,7 +66,7 @@ var PeriscopeWebClient = {
             $(function () {
                 if (loginTwitter) {
                     loginTwitter = JSON.parse(loginTwitter);
-                    Ready(loginTwitter);
+                    PeriscopeWebClient.Ready(loginTwitter);
                     refreshProfile();
                 } else if (session_key && session_secret) {
                     SignIn3(session_key, session_secret);
@@ -66,8 +92,8 @@ var PeriscopeWebClient = {
         var signOutButton = $('<a class="button">Sign out</a>');
         signOutButton.click(SignOut);
 
-        var userLink = $('<a class="username">@' + (loginInfo.user.username || loginInfo.user.twitter_screen_name) + '</a>').click(switchSection.bind(null, 'User', loginInfo.user.id));
-        var userEdit = $('<span class="right icon edit" title="Profile & settings">&nbsp;</span>').click(switchSection.bind(null, 'Edit'));
+        var userLink = $('<a class="username">@' + (loginInfo.user.username || loginInfo.user.twitter_screen_name) + '</a>').click(PeriscopeWebClient.SwitchSection.bind(null, 'User', loginInfo.user.id));
+        var userEdit = $('<span class="right icon edit" title="Profile & settings">&nbsp;</span>').click(PeriscopeWebClient.SwitchSection.bind(null, 'Edit'));
         loginInfo.user.profile_image_urls.sort(function (a, b) {
             return a.width * a.height - b.width * b.height;
         });
@@ -93,7 +119,7 @@ var PeriscopeWebClient = {
         }
         for (var i in menu) {
             var link = $('<div class="menu" id="menu' + menu[i].id + '">' + menu[i].text + '</div>');
-            link.click(switchSection.bind(null, menu[i].id));
+            link.click(PeriscopeWebClient.SwitchSection.bind(null, menu[i].id));
             left.append(link);
         }
         $('.menu').first().click();
@@ -108,13 +134,13 @@ var PeriscopeWebClient = {
         $(window).on('popstate', function (event) {
             event = event.originalEvent;
             if (event.state && event.state.section)
-                switchSection(event.state.section, event.state.param, true);
+            PeriscopeWebClient.SwitchSection(event.state.section, event.state.param, true);
         });
         Notifications.start();
     },
     scrollPositions: {},
     SwitchSection: function (section, param, popstate) {
-        scrollPositions[document.URL.split('/')[3]] = window.pageYOffset;
+        PeriscopeWebClient.scrollPositions[document.URL.split('/')[3]] = window.pageYOffset;
         // Switch menu
         $('.menu.active').removeClass('active');
         $('#menu' + section).addClass('active');
@@ -139,7 +165,7 @@ var PeriscopeWebClient = {
             if (settings[refreshSettingKey]) {
                 var refreshBtn = $('#refresh' + section);
                 if (refreshBtn.length > 0) {
-                    scrollPositions[section] = 0;
+                    PeriscopeWebClient.scrollPositions[section] = 0;
                     refreshBtn.click();
                 }
             }
@@ -194,8 +220,8 @@ var PeriscopeWebClient = {
 
         document.title = section + ' - ' + 'My-OpenPeriscope';
 
-        if (scrollPositions.hasOwnProperty(section)) {
-            window.scrollTo(0, scrollPositions[section]);
+        if (PeriscopeWebClient.scrollPositions.hasOwnProperty(section)) {
+            window.scrollTo(0, PeriscopeWebClient.scrollPositions[section]);
         }
     }
 }

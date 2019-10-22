@@ -5,7 +5,7 @@ session_secret = localStorage.getItem('session_secret'),
 loginTwitter = localStorage.getItem('loginTwitter');
 
 function SignIn3(session_key, session_secret) {
-    Api('loginTwitter', {
+    PeriscopeWrapper.V2_POST_Api('loginTwitter', {
         "session_key": session_key,
         "session_secret": session_secret
     }, function (response) {
@@ -13,7 +13,7 @@ function SignIn3(session_key, session_secret) {
         loginTwitter = response;
         Ready(loginTwitter);
         if (!loginTwitter.user.username)    // User registration
-            Api('verifyUsername', {
+        PeriscopeWrapper.V2_POST_Api('verifyUsername', {
                 username: loginTwitter.suggested_username,
                 display_name: loginTwitter.user.display_name
             }, function (verified) {
@@ -192,7 +192,7 @@ function SignInSessionID()
     setSet('session_cookie', $('#secret').val());
     if (settings.session_cookie)
     {
-        Api('user', { cookie: settings.session_cookie }, 
+        PeriscopeWrapper.V2_POST_Api('user', { cookie: settings.session_cookie }, 
             function (userResponse) 
             {
                 loginTwitter = localStorage.getItem('loginTwitter');
@@ -204,12 +204,12 @@ function SignInSessionID()
                 loginTwitter.user.profile_image_urls.sort(function (a, b) {
                     return a.width * a.height - b.width * b.height;
                 });
-                Api('getSettings', {}, 
+                PeriscopeWrapper.V2_POST_Api('getSettings', {}, 
                     function (settingsResponse) 
                     {
                         loginTwitter.settings = settingsResponse;
                         localStorage.setItem('loginTwitter', JSON.stringify(loginTwitter));
-                        Ready(loginTwitter);
+                        PeriscopeWebClient.Ready(loginTwitter);
                     }
                 )
             }
