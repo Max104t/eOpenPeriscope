@@ -1,3 +1,21 @@
+var GM_xmlhttpRequest_advanced_http = function(options) {
+    //
+    // followed the recommendation in :
+    // https://hackernoon.com/a-practical-solution-for-cors-cross-origin-resource-sharing-issues-in-ionic-3-and-cordova-2112fc282664
+    // but cordova-plugin-advanced-http doesn't work!
+    //
+    history.replaceState({}, '', '');
+    cordova.plugin.http.setHeader('*', 'Origin', '');
+    options.data = JSON.parse(options.data);
+    cordova.plugin.http.sendRequest(
+        options.url,
+        options,
+        options.onload,
+        function (e) {
+            console.error(e);
+        });
+};
+
 var GM_xmlhttpRequest_proxy = function (options) {
     var corsProxyUrl = localStorage.getItem('cors_proxy_url');
     if (!corsProxyUrl)
@@ -89,6 +107,7 @@ document.addEventListener("deviceready", function(){
     if (!GM_BROWSER) {
         if (IS_CORDOVA_APP && device.platform === "browser") {
             GM_xmlhttpRequest = GM_xmlhttpRequest_proxy;
+            // GM_xmlhttpRequest = GM_xmlhttpRequest_advanced_http; // didn't work
         }
     }    
 }, false);
