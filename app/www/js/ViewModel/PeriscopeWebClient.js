@@ -11,12 +11,18 @@ var Inits= {
     Top: function () {
         TopController.init($('#right'));
     },
-    Search: function () {},
+    Search: function () {
+        SearchController.init($('#right'));
+    },
     Following: function () {
         FollowingController.init($('#right'));
     },
-    Create: function () {},
-    Chat: function () {},
+    Create: function () {
+        CreateController.init($('#right'));
+    },
+    Chat: function () {
+        ChatController.init($('#right'));
+    },
     User: function () {
         UserController.init($('#right'));
     },
@@ -26,8 +32,12 @@ var Inits= {
     Edit: function () {
         EditController.init($('#right'));
     },
-    Dmanager: function () {},
-    Console: function () {}
+    Dmanager: function (go_to_bid) {
+        DownloadManagerController.init($('#right'), go_to_bid);
+    },
+    Console: function () {
+        ConsoleController.init($('#right'));    
+    }
 };
 
 var IMG_PATH = '';
@@ -102,7 +112,8 @@ var PeriscopeWebClient = {
             {text: 'User', id: 'User'},
             {text: 'Groups', id: 'Groups'}
         ];
-        if (!GM_BROWSER) {
+        if (false) { // (!GM_BROWSER) {
+            // TODO: MAX: not yet implemented
             menu.push({ text: 'Download manager', id: 'Dmanager' });
             menu.push({ text: 'Downloading', id: 'Console' });
         }
@@ -114,7 +125,8 @@ var PeriscopeWebClient = {
         $('.menu').first().click();
         $('#menuCreate').hide(); // Create broadcasts only for developers
         left.append($('<label title="All API requests will be logged to console"/>').append($('<input type="checkbox" id="debug"/>').click(function () {
-            $('#menuCreate').toggle();
+            // TODO: MAX: not yet implemented
+            // $('#menuCreate').toggle();
         }), 'Debug mode'));
         emoji.img_sets[emoji.img_set].path = 'http://unicodey.com/emoji-data/img-apple-64/';
         emoji.supports_css = true;

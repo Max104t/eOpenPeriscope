@@ -9,8 +9,12 @@ var GM_xmlhttpRequest_proxy = function (options) {
     var onload = options.onload;
     var oReq = new XMLHttpRequest();
 
-    oReq.addEventListener("loadend", function(res) {
-        var resTarget = res.target;
+    var chunks = '';
+    var chunks2 = [];// needed for binary decryption key
+    // res.setEncoding('utf8');
+
+    oReq.addEventListener("load", function(e) {
+        var resTarget = e.target;
         onload({
             status: resTarget.status,
             responseText: resTarget.responseText,
@@ -24,6 +28,9 @@ var GM_xmlhttpRequest_proxy = function (options) {
     });
     oReq.open(options.method, corsProxyUrl + encodeURIComponent(options.url), /*async=*/true);
     oReq.setRequestHeader('Content-Type', 'application/json');
+    for (header in options.headers) {
+        oReq.setRequestHeader(header, options.headers[header]);
+    }
     var data_param = JSON.parse(options.data);
 
     if (options.method == "POST") {
