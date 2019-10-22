@@ -61,5 +61,6 @@ typings/
 .next
 
 /.vscode
+/.unotes
 /setenv.cmd
 /LOCAL_NOTES.md
