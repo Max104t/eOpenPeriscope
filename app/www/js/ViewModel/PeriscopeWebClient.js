@@ -1,29 +1,16 @@
-var Progress = {
-    elem: $('<div id="progress"/>'),
-    count: 0,
-    start: function(){
-        this.count++;
-        this.elem.css('visibility', 'visible');
-        this.elem.css('width', Math.floor(100/this.count)+'%');
-    },
-    stop: function(){
-        this.count--;
-        if (!this.count) {  // if there is no unfinished requests
-            this.elem.css('width', '0');
-            this.elem.css('visibility', 'hidden');
-        } else
-            this.elem.css('width', Math.floor(100/this.count)+'%');
-    }
-};
-
 var Inits= {
     Map: function () { },
     ApiTest: function () {
         ApiTestController.init($('#right'));
     },
+    Groups: function (){
+        GroupsController.init($('#right'), function() {});
+    },
     Top: function () {},
     Search: function () {},
-    Following: function () {},
+    Following: function () {
+        FollowingController.init($('#right'));
+    },
     Create: function () {},
     Chat: function () {},
     User: function () {},
@@ -34,13 +21,11 @@ var Inits= {
 };
 
 var IMG_PATH = '';
-    
-function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
+var oauth_token = localStorage.getItem('oauth_token'),
+oauth_verifier = localStorage.getItem('oauth_verifier'),
+session_key = localStorage.getItem('session_key'),
+session_secret = localStorage.getItem('session_secret'),
+loginTwitter = localStorage.getItem('loginTwitter');
 
 var PeriscopeWebClient = {
     CreateMainWindow: function () {
@@ -57,34 +42,29 @@ var PeriscopeWebClient = {
             }
 
             document.title = 'My-OpenPeriscope';
-            var oauth_token = localStorage.getItem('oauth_token'),
-                oauth_verifier = localStorage.getItem('oauth_verifier'),
-                session_key = localStorage.getItem('session_key'),
-                session_secret = localStorage.getItem('session_secret'),
-                loginTwitter = localStorage.getItem('loginTwitter');
 
-            $(function () {
-                if (loginTwitter) {
-                    loginTwitter = JSON.parse(loginTwitter);
-                    PeriscopeWebClient.Ready(loginTwitter);
-                    refreshProfile();
-                } else if (session_key && session_secret) {
-                    SignIn3(session_key, session_secret);
-                } else if (oauth_token && oauth_verifier) {
-                    SignIn2(oauth_token, oauth_verifier);
-                } else if ((oauth_token = getParameterByName('oauth_token')) && (oauth_verifier = getParameterByName('oauth_verifier'))) {
-                    localStorage.setItem('oauth_token', oauth_token);
-                    localStorage.setItem('oauth_verifier', oauth_verifier);
-                    SignIn2(oauth_token, oauth_verifier);
-                } else {
-                    var signInButton = $('<a class="button">Sign in with twitter</a>').click(SignIn1);
-                    var signInSMSButton = $('<a class="button">Sign in with SMS</a>').click(SignInSMS);
-                    var signInSidButton = $('<a class="button">Sign in with SID</a>').click(SignInSessionID);
-                    $(document.body).html('<input type="text" id="secret" size="60" placeholder="Enter periscope consumer secret here... or SID" value="' +
-                        (settings.consumer_secret || '') + '"/><br/>').append(signInButton, signInSMSButton, signInSidButton);
-                }
-                $(document.body).append(Progress.elem);
-            });
+            if (loginTwitter) {
+                loginTwitter = JSON.parse(loginTwitter);
+            }
+            if (loginTwitter.user) {
+                PeriscopeWebClient.Ready(loginTwitter);
+                PeriscopeWebClient.RefreshProfile(loginTwitter);
+            } else if (session_key && session_secret) {
+                SignIn3(session_key, session_secret);
+            } else if (oauth_token && oauth_verifier) {
+                SignIn2(oauth_token, oauth_verifier);
+            } else if ((oauth_token = getParameterByName('oauth_token')) && (oauth_verifier = getParameterByName('oauth_verifier'))) {
+                localStorage.setItem('oauth_token', oauth_token);
+                localStorage.setItem('oauth_verifier', oauth_verifier);
+                SignIn2(oauth_token, oauth_verifier);
+            } else {
+                var signInButton = $('<a class="button">Sign in with twitter</a>').click(SignIn1);
+                var signInSMSButton = $('<a class="button">Sign in with SMS</a>').click(SignInSMS);
+                var signInSidButton = $('<a class="button">Sign in with SID</a>').click(SignInSessionID);
+                $(document.body).html('<input type="text" id="secret" size="60" placeholder="Enter periscope consumer secret here... or SID" value="' +
+                    (settings.consumer_secret || '') + '"/><br/>').append(signInButton, signInSMSButton, signInSidButton);
+            }
+            $(document.body).append(Progress.elem);
         }
     },
     Ready: function (loginInfo) {
@@ -103,15 +83,16 @@ var PeriscopeWebClient = {
             '<div>' + emoji.replace_unified(loginInfo.user.display_name) + '</div>', userLink);
         $(document.body).html(left).append('<div id="right"/>', Progress.elem);
         var menu = [
-            { text: 'API test', id: 'ApiTest' },
-            { text: 'Map', id: 'Map' },
-            { text: 'Top', id: 'Top' },
-            { text: 'Following2', id: 'Following2' },
-            { text: 'Search broadcasts', id: 'Search' },
-            { text: 'New broadcast', id: 'Create' },
-            { text: 'Chat', id: 'Chat' },
-            { text: 'Suggested people', id: 'People' },
-            { text: 'User', id: 'User' }
+            {text: 'API test', id: 'ApiTest'},
+            {text: 'Map', id: 'Map'},
+            {text: 'Top', id: 'Top'},
+            {text: 'Following', id: 'Following'},
+            {text: 'Search broadcasts', id: 'Search'},
+            {text: 'New broadcast', id: 'Create'},
+            {text: 'Chat', id: 'Chat'},
+            {text: 'Suggested people', id: 'People'},
+            {text: 'User', id: 'User'},
+            {text: 'Groups', id: 'Groups'}
         ];
         if (!GM_BROWSER) {
             menu.push({ text: 'Download manager', id: 'Dmanager' });
@@ -137,6 +118,19 @@ var PeriscopeWebClient = {
             PeriscopeWebClient.SwitchSection(event.state.section, event.state.param, true);
         });
         Notifications.start();
+    },
+    RefreshProfile: function(loginTwitter) {
+        PeriscopeWrapper.V2_POST_Api('user', {
+            user_id: loginTwitter.user.id
+        }, function (userResponse) {
+            loginTwitter.user = userResponse.user;
+            localStorage.setItem('loginTwitter', JSON.stringify(loginTwitter));
+            loginTwitter.user.profile_image_urls.sort(function (a, b) {
+                return a.width * a.height - b.width * b.height;
+            });
+            if (selfAvatar.attr('src') != loginTwitter.user.profile_image_urls[0].url)
+                selfAvatar.attr('src', loginTwitter.user.profile_image_urls[0].url);
+        })
     },
     scrollPositions: {},
     SwitchSection: function (section, param, popstate) {
