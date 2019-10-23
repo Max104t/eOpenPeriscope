@@ -1,5 +1,5 @@
 const IS_CORDOVA_APP = !!window.cordova;
-const NODEJS = typeof require === 'function';
+const NODEJS = navigator.userAgent.toLowerCase().indexOf(' electron/') > -1;
 
 function save_settings(settings) {
     localStorage.setItem('settings', JSON.stringify(settings));

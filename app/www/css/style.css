@@ -30,7 +30,7 @@
     font-family: "Roboto";
     font-style: normal;
     font-weight: 400;
-    src: local("Roboto"), local("Roboto-Regular"), url("/fonts/Roboto-latin.woff2") format("woff2");
+    src: local("Roboto"), local("Roboto-Regular"), url("../fonts/Roboto-latin.woff2") format("woff2");
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
@@ -38,7 +38,7 @@
     font-family: "Roboto";
     font-style: normal;
     font-weight: 400;
-    src: local("Roboto"), local("Roboto-Regular"), url("/fonts/Roboto-cyrillic.woff2") format("woff2");
+    src: local("Roboto"), local("Roboto-Regular"), url("../fonts/Roboto-cyrillic.woff2") format("woff2");
     unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 
@@ -338,45 +338,45 @@ input#debug {
 }
 
 .chatlink {
-    background-image: url("/images/comment-black.png");
+    background-image: url("../images/comment-black.png");
 }
 
 .watching {
-    background-image: url("/images/user-black.png");
+    background-image: url("../images/user-black.png");
 }
 
 .hearts {
-    background-image: url("/images/heart-black.png");
+    background-image: url("../images/heart-black.png");
 }
 
 .delete {
-    background-image: url("/images/delete-black.png");
+    background-image: url("../images/delete-black.png");
     height: 14px;
 }
 
 .screenlist {
-    background-image: url("/images/camera-black.png");
+    background-image: url("../images/camera-black.png");
     height: 14px;
 }
 
 .date {
-    background-image: url("/images/calendar-black.png");
+    background-image: url("../images/calendar-black.png");
 }
 
 .time {
-    background-image: url("/images/clock-black.png");
+    background-image: url("../images/clock-black.png");
 }
 
 .friend_chat {
-    background-image: url("/images/eye-black.png");
+    background-image: url("../images/eye-black.png");
 }
 
 .is_locked {
-    background-image: url("/images/lock-black.png");
+    background-image: url("../images/lock-black.png");
 }
 
 .edit {
-    background-image: url("/images/edit-black.png");
+    background-image: url("../images/edit-black.png");
     background-position: center;
     padding: 7px 20px 7px 20px;
     border-radius: 5px;
@@ -388,7 +388,7 @@ input#debug {
 }
 
 .lives {
-    background-image: url("/images/video-black.png");
+    background-image: url("../images/video-black.png");
 }
 
 dt {
@@ -617,7 +617,7 @@ img.emoji {
 /* USER */
 img.avatar {
     border: none;
-    background: url("/images/default_avatar.png");
+    background: url("../images/default_avatar.png");
     border-radius: 100%;
 }
 
@@ -682,7 +682,7 @@ img.avatar {
 }
 
 .gutter.gutter-horizontal {
-    background-image: url("/images/vertical.png");
+    background-image: url("../images/vertical.png");
     cursor: ew-resize;
 }
 
@@ -711,7 +711,7 @@ img.lock {
 }
 
 .bullets {
-    background-image: url("/images/bullets-black.png");
+    background-image: url("../images/bullets-black.png");
     width: 14px;
     height: 14px;
     display: block;
