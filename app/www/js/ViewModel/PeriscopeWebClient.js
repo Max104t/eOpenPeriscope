@@ -49,6 +49,9 @@ loginTwitter = localStorage.getItem('loginTwitter');
 
 var PeriscopeWebClient = {
     CreateMainWindow: function () {
+        if (NODEJS) {
+            IMG_PATH = window.location.href.substr(0,window.location.href.lastIndexOf('/'));
+        }
         if (location.href == 'https://api.twitter.com/oauth/authorize') {
             location.href = $('meta[http-equiv="refresh"]').attr('content').substr(6).replace('twittersdk://openperiscope/index.html', 'http://example.net/');
         } else {

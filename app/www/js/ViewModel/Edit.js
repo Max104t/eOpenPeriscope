@@ -34,7 +34,7 @@ var EditController = {
         var form = $('<form target="foravatar" action="https://api.periscope.tv/api/v2/uploadProfileImage" enctype="multipart/form-data" method="post">' +
             '<input name="image" type="file" accept="image/jpeg,image/png,image/gif">' +
             '<input name="cookie" type="hidden" value="'+loginTwitter.cookie+'"></form>');
-        var hiddenIframe = $('<iframe id="foravatar" name="foravatar" style="display: none;"/>').on('load',PeriscopeWebClient.RefreshProfile);
+        var hiddenIframe = $('<iframe id="foravatar" name="foravatar" style="display: none;"/>').on('load',PeriscopeWebClient.RefreshProfile(loginTwitter));
     
         var settingsContainer = $('<div/>');
         var tempSettings;
