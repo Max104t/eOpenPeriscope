@@ -3,7 +3,7 @@
   "displayName": "eOpenPeriscope",
   "version": "1.0.0",
   "description": "cordova-electron OpenPeriscope",
-  "main": "Periscope_Web_Client.user",
+  "main": "./www/js/platform/electron/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
