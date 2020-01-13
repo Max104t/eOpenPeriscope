@@ -1,0 +1,3 @@
+[submodule "bypasscors"]
+	path = bypasscors
+	url = git@Max104t.github.com:Max104t/bypasscors.git
