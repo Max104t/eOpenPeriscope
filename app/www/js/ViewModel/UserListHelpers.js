@@ -45,7 +45,7 @@ function getUserDescription(user) {
                 el.innerHTML = el.innerHTML == 'block' ? 'unblock' : 'block';
             })
     }))
-    .append(settings.useCloseFollowList ? ($('<a class="button' + (selectedDownloadList.includes(user.id) ? ' activated' : '') + '" title="Select/Deselect User">' + (selectedDownloadList.includes(user.id) ? '-' : '+') + '</a>').click(function () {
+    .append(settings.selectedUsersList ? ($('<a class="button' + (selectedDownloadList.includes(user.id) ? ' activated' : '') + '" title="Select/Deselect User">' + (selectedDownloadList.includes(user.id) ? '-' : '+') + '</a>').click(function () {
         var el = this;
         var followButton = $(el).prev().prev()
         if (el.innerHTML == '+') {
