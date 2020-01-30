@@ -201,12 +201,14 @@ var EditController = {
         var PeriSettingsSpoiler = $('<h3 class="spoiler menu"  data-spoiler-link="PeriSettings">Periscope settings</h3>');
         var PeriSettings = $('<div class="spoiler-content" data-spoiler-link="PeriSettings" id="PeriSettings" />').append(settingsContainer, "<br/>", buttonSettings);
     
+        var saveSettingsButton = $('<a class="button">Download Settings</a>').click(function () {download_settings();});
     
         parent.append($('<div id="Edit"/>').append(
             ProfileEditSpoiler,  ProfileEdit,
             MyOpSettingsSpoiler, MyOpSettings,
             NamesEditorSpoiler, NamesEditor,
             PeriSettingsSpoiler, PeriSettings
+            , saveSettingsButton
         ));
         $(".spoiler").off("click").spoiler({ triggerEvents: true });
         MyOpSettingsSpoiler.click();
